@@ -16,4 +16,4 @@ Route::get('/display', 'DisplayController@index')->name('display');
 Route::get('/get-table', 'DisplayController@getTable')->name('get-table');
 
 Route::post('/truncate', 'UploadController@truncateDB')->name('truncate');
-Route::post('load', 'UploadController@load')->name('load');
+Route::post('/load', 'UploadController@load')->name('load');
