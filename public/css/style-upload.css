@@ -1,0 +1,43 @@
+.wrapper {
+  min-height: 100vh;
+  font-size: 22px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+}
+
+.main {
+  min-height: 100vh;
+}
+
+.upload {
+  background-position: top 15% left 15%, top 15% right 15%, bottom 15% right 15%, bottom 15% left 15%;
+  background-size: 86px;
+  background-repeat: no-repeat;
+  background-image: url(/images/angles-top-left.svg), url(/images/angles-top-right.svg), url(/images/angles-bottom-right.svg), url(/images/angles-bottom-left.svg);
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.append-info {
+  position: relative;
+}
+
+.append-info .close-info {
+  position: absolute;
+  top: -35px;
+  right: -30px;
+  font-size: 50px;
+}
+
+.loader {
+  display: none;
+}
