@@ -44,6 +44,9 @@ class DisplayController extends Controller
 		$table = [];
 		// get array of articles
 		parse_str($request['articles'], $articlesArray);
+		// set date range including end day
+		$dateFrom = $request['date-from'];
+		$dateTo = date('Y-m-d', strtotime($request['date-to'] . ' +1 day'));
 
 		if ($articlesArray) {
 			foreach ( $articlesArray['articles'] as $categoryId => $groups ) {
@@ -58,8 +61,8 @@ class DisplayController extends Controller
 						$articleName  = Article::find( $articleId )->name;
 						$articleSum   = 0;
 						$transactions = Transaction::whereBetween( 'date', [
-							$request['date-from'],
-							$request['date-to']
+							$dateFrom,
+							$dateTo
 						] )
 						                           ->where( 'category_id', $categoryId )
 						                           ->where( 'group_id', $groupId )
@@ -72,21 +75,38 @@ class DisplayController extends Controller
 							$articleSum  += $sum;
 						}
 
-						$table[ $categoryName ]['$sum']                               = $categorySum;
-						$table[ $categoryName ][ $groupName ]['$sum']                 = $groupSum;
-						$table[ $categoryName ][ $groupName ][ $articleName ]['$sum'] = $articleSum;
-						$table[ $categoryName ][ $groupName ][ $articleName ][]       = $transactions;
+						$table[ $categoryName ]['category_sum']                                                    = $categorySum;
+						$table[ $categoryName ]['groups'][ $groupName ]['group_sum']                               = $groupSum;
+						$table[ $categoryName ]['groups'][ $groupName ]['articles'][ $articleName ]['article_sum'] = $articleSum;
+						$table[ $categoryName ]['groups'][ $groupName ]['articles'][ $articleName ]['transactions'] = $transactions;
 					}
 				}
 			}
 		}
 
 		$period = new \DatePeriod(
-			new \DateTime($request['date-from']),
+			new \DateTime($dateFrom),
 			new \DateInterval('P1D'),
-			new \DateTime($request['date-to'])
+			new \DateTime($dateTo)
 		);
 
 		return view('pieces.display.ajax-table', compact('table', 'period'));
 	}
 }
+
+
+
+/**
+ *
+ * table =>
+ *          [operaciyni vitratu =>
+ *                  [sum => 123]
+ *                  [arrayGroups] =>
+ *                          [sum => 123],
+ *                          [articleArr =>
+ *                              [sum => 123],
+ *                              [dateArray => array()]
+ *
+ *
+ *
+ */

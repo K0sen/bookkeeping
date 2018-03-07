@@ -51,27 +51,27 @@ ul {
 
 .accounting-table {
   font-size: 18px;
-  padding-left: 50px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
-.date-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: 50px;
+.table {
+  margin-left: 70px;
 }
 
-.date-row__date {
-  margin: 5px;
+.table tr > td {
+  border: 1px solid #000000;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tbody > tr > td:first-child {
+  min-width: 300px;
 }
 
 .category,
 .group,
 .article {
-  padding-left: 16px;
   position: relative;
-  margin-top: 10px;
 }
 
 .category__sum,
@@ -81,16 +81,5 @@ ul {
   color: blue;
   font-size: 12px;
   top: 0;
-  left: -50px;
-  overflow: visible;
-}
-
-.transactions {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.transactions .transaction {
-  margin: 5px;
+  left: -80px;
 }

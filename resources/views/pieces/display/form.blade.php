@@ -7,7 +7,7 @@
         <label for="date-from">From</label>
         <input id="date-from" name="date-from" type="date" value="2014-10-01" required>
         <label for="date-to">To</label>
-        <input id="date-to" name="date-to" type="date" value="2015-10-01" required>
+        <input id="date-to" name="date-to" type="date" value="2015-09-30" required>
     </div>
     <ul>
     @foreach ($selectTable as $categoryName => $groups)
@@ -25,7 +25,7 @@
             </ul>
         </li>
     @endforeach
-    <button class="btn btn-dark send">Submit</button>
+    <button class="btn btn-dark send">Render a table</button>
     </ul>
 
 @else
