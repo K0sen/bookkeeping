@@ -46,9 +46,12 @@ class DisplayController extends Controller
 		parse_str($request['articles'], $articlesArray);
 		// set date range including end day
 		$dateFrom = $request['date-from'];
-		$dateTo = date('Y-m-d', strtotime($request['date-to'] . ' +1 day'));
+		if ($request['date-from'] != $request['date-to'])
+			$dateTo = date('Y-m-d', strtotime($request['date-to'] . ' +1 day'));
+		else
+			$dateTo = date('Y-m-d', strtotime($request['date-to']));
 
-		if ($articlesArray) {
+		if ($articlesArray && $dateFrom <= $dateTo ) {
 			foreach ( $articlesArray['articles'] as $categoryId => $groups ) {
 				$categoryName = Category::find( $categoryId )->name;
 				$categorySum  = 0;
