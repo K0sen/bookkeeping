@@ -69,6 +69,10 @@ class DisplayController extends Controller
 						                           ->where( 'article_id', $articleId )
 						                           ->pluck( 'sum', 'date' )
 						                           ->all();
+						// solve problem with 1-day request
+						if ( ($request['date-from'] == $request['date-to']) && isset($transactions[$dateTo]))
+							unset($transactions[$dateTo]);
+
 						foreach ( $transactions as $sum ) {
 							$categorySum += $sum;
 							$groupSum    += $sum;

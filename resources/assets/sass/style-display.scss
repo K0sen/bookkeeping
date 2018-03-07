@@ -64,6 +64,8 @@ ul {
   }
 
   tbody > tr > td:first-child {
+    text-align: left;
+    max-width: 300px;
     min-width: 300px;
   }
 }
