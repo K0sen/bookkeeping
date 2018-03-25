@@ -33,8 +33,6 @@ class UploadController extends Controller
 	 */
 	public function load(Request $request)
 	{
-		//forced measure - script sometimes overcharges 30 sec
-		ini_set('max_execution_time', 45);
 		$time_start = microtime(true);
 		$result = Excel::load($request['file'])->get()->toArray();
 		$transaction = new Transaction();
@@ -70,7 +68,8 @@ class UploadController extends Controller
 
 					$transaction->date = $date;
 					$transaction->sum =  (int) str_replace(',', '', $sum);
-					if (Transaction::create($transaction->getAttributes())) {
+
+					if ($transaction->insertRow($transaction->getAttributes())) {
 						$transaction->transactionCount++;
 					} else {
 						return 'Something went wrong';
@@ -78,6 +77,8 @@ class UploadController extends Controller
 				}
 			}
 		}
+
+		Transaction::insert($transaction->insertData);
 
 		return view('pieces.upload.ajax-response', [
 			'groupCount' => $transaction->groupCount,

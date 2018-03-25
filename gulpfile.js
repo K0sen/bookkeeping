@@ -15,8 +15,11 @@ var config = {
         watch: 'assets/sass/*.scss',
         src: 'assets/sass/app.scss',
         dest: '../public/css/'
+    },
+    js: {
+        src: "../public/js/*.js"
     }
-}
+};
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass'], function() {
@@ -27,6 +30,7 @@ gulp.task('serve', ['sass'], function() {
 
     gulp.watch(config.root + config.css.watch, ['sass']);
     gulp.watch(config.root + config.html.src).on('change', browserSync.reload);
+    gulp.watch(config.root + config.js.src).on('change', browserSync.reload);
 });
 
 // Compile sass into CSS & auto-inject into browsers

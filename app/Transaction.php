@@ -43,6 +43,7 @@ class Transaction extends Model
 	}
 
 	public $groupName, $categoryName;                       // stores names
+	public $insertData = [];                                // prepare data for insert
 	public $dateMin, $dateMax;
 	public $dateMap = [];                                   // stores array of dates
 	public $dateFromIndex = 0, $dateToIndex = 0;            // indexes from and to what date transactions add to db
@@ -151,5 +152,20 @@ class Transaction extends Model
 		$offset = $this->dateToIndex - $this->dateFromIndex + 1;
 		$row = array_slice($row, $this->dateFromIndex, $offset);
 		return array_filter($row);
+	}
+
+	/**
+	 * Insert row to array of rows that will be load into db
+	 *
+	 * @param $row
+	 *
+	 * @return bool
+	 */
+	public function insertRow( $row )
+	{
+		// validate data
+		$this->insertData[] = $row;
+
+		return true;
 	}
 }

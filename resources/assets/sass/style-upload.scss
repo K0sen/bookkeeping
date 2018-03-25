@@ -6,6 +6,11 @@
   font-weight: 600;
 }
 
+.header {
+  position: fixed;
+  display: flex;
+}
+
 .main {
   min-height: 100vh;
 }

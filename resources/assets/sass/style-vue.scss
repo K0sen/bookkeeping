@@ -1,0 +1,32 @@
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  //background: linear-gradient(to right, #fefcea 0, #fefcea 61.5%, #f1da36 61.5%, #f1da36 100%);
+}
+
+.main {
+  position: relative;
+  min-height: 100vh;
+}
+
+.item {
+}
+
+.left:before {
+  content: '';
+  position: absolute;
+  background: lightskyblue;
+  right: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100%;
+}
+
+.right:before {
+  content: '';
+  background: violet;
+  position: absolute;
+  z-index: -1;
+  width: 100vw;
+  height: 100%;
+}

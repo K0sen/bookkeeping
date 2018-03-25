@@ -14,7 +14,8 @@
 <body>
 
 <div class="wrapper">
-    <header>
+    <header class="header">
+        <a href="{{ route('display') }}">Display</a>
         <form action="{{ route('truncate') }}" method="post">
             {{ csrf_field() }}
             <button class="btn btn-link">Truncate db</button>

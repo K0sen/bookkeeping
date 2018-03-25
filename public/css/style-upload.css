@@ -5,6 +5,13 @@
   font-weight: 600;
 }
 
+.header {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .main {
   min-height: 100vh;
 }
